@@ -12,13 +12,13 @@ class AuthRepositoryRemote implements AuthRepository {
   Future<Result<void>> login({
     required String username,
     required String password,
-  }) {
+  }) async {
     final LoginRequest loginRequest = LoginRequest(
       username: username,
       password: password,
       expiresInMins: 30,
     );
 
-    return _apiClient.login(loginRequest);
+    return await _apiClient.login(loginRequest);
   }
 }
