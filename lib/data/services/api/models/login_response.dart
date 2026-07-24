@@ -6,7 +6,7 @@ class LoginResponse {
   final String email;
   final String firstName;
   final String lastName;
-  final String female;
+  final String gender;
   final String image;
 
   const LoginResponse({
@@ -17,7 +17,7 @@ class LoginResponse {
     required this.email,
     required this.firstName,
     required this.lastName,
-    required this.female,
+    required this.gender,
     required this.image,
   });
 
@@ -30,7 +30,7 @@ class LoginResponse {
       'email': email,
       'firstName': firstName,
       'lastName': lastName,
-      'female': female,
+      'gender': gender,
       'image': image,
     };
   }
@@ -44,7 +44,7 @@ class LoginResponse {
       email: json['email'] as String,
       firstName: json['firstName'] as String,
       lastName: json['lastName'] as String,
-      female: json['female'] as String,
+      gender: json['gender'] as String,
       image: json['image'] as String,
     );
   }
