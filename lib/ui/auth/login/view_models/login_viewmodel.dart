@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:curso_mvvm/data/repositories/auth/auth_repository.dart';
+import 'package:curso_mvvm/utils/command.dart';
 import 'package:curso_mvvm/utils/result.dart';
 
 class LoginViewmodel {
@@ -8,7 +9,9 @@ class LoginViewmodel {
 
   LoginViewmodel({required this._authRepository});
 
-  Future<Result<void>> login((String, String) credentials) async {
+  late final login = Command1(_login);
+
+  Future<Result<void>> _login((String, String) credentials) async {
     final (username, password) = credentials;
 
     final result = await _authRepository.login(
