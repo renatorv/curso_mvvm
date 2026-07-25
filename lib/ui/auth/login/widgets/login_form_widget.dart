@@ -14,6 +14,8 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
   final passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  bool isLoggingIn = false;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -57,7 +59,12 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
             onPressed: _validateForm,
             child: Padding(
               padding: const EdgeInsets.all(8),
-              child: Text('Login', style: TextStyle(color: Colors.white)),
+              child: isLoggingIn
+                  ? CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 1,
+                    )
+                  : Text('Login', style: TextStyle(color: Colors.white)),
             ),
           ),
         ],
@@ -65,11 +72,11 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
     );
   }
 
-  void _validateForm() {
+  void _validateForm() async {
     if (_formKey.currentState?.validate() == true) {
       final username = usernameController.text;
       final password = passwordController.text;
-      widget.loginViewmodel.login((username, password));
+      await widget.loginViewmodel.login((username, password));
     }
   }
 }
