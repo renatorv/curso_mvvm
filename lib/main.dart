@@ -1,7 +1,9 @@
+import 'package:curso_mvvm/config/dependecies.dart';
 import 'package:curso_mvvm/routing/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  setupDependencies();
   runApp(const MyApp());
 }
 
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: router(),
+      routerConfig: router,
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
     );
