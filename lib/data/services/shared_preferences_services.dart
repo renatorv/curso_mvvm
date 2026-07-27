@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../domain/models/user.dart';
 import '../../utils/result.dart';
 
-class SharedPreferencies {
+class SharedPreferencesServices {
   static const String _userKey = 'userKey';
 
   Future<Result<void>> saveUser(User user) async {
