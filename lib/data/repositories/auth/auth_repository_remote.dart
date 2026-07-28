@@ -68,8 +68,10 @@ class AuthRepositoryRemote extends ChangeNotifier implements AuthRepository {
         return false;
     }
   }
+
+  @override
+  Future<void> verifyLogin() async {
+    await _sharedPreferencesServices.fetchUser();
+    notifyListeners();
+  }
 }
-
-// https://www.youtube.com/watch?v=sDSpJQHFY5M&list=PLrEFUA8G5LyX2XDjU2sKXe1Q5HRozEH92&index=14
-
-// 2:55
