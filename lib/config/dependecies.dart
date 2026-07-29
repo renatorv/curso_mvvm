@@ -1,5 +1,7 @@
 import 'package:curso_mvvm/data/repositories/auth/auth_repository.dart';
 import 'package:curso_mvvm/data/repositories/auth/auth_repository_remote.dart';
+import 'package:curso_mvvm/data/repositories/product/product_repository.dart';
+import 'package:curso_mvvm/data/repositories/product/product_repository_remote.dart';
 import 'package:curso_mvvm/data/services/api/api_client.dart';
 import 'package:curso_mvvm/data/services/shared_preferences_services.dart';
 import 'package:dio/dio.dart';
@@ -21,5 +23,9 @@ void setupDependencies() {
       apiClient: getIt(),
       sharedPreferencesServices: getIt(),
     ),
+  );
+
+  getIt.registerLazySingleton<ProductRepository>(
+    () => ProductRepositoryRemote(apiClient: getIt()),
   );
 }

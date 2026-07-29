@@ -1,3 +1,4 @@
+import 'package:curso_mvvm/domain/models/product.dart';
 import 'package:dio/dio.dart';
 
 import '../../../utils/result.dart';
@@ -9,10 +10,6 @@ class ApiClient {
   final Dio _dio;
 
   const ApiClient({required this._apiUrl, required this._dio});
-
-  // const ApiClient({required String apiUrl, required Dio dio})
-  //   : _dio = dio,
-  //     _apiUrl = apiUrl;
 
   Future<Result<LoginResponse>> login(LoginRequest loginRequest) async {
     try {
@@ -29,6 +26,27 @@ class ApiClient {
           'Ocorreu um erro ao realizar o login: ${response.statusCode}',
         ),
       );
+    } on Exception catch (e) {
+      return Result.error(e);
+    }
+  }
+
+  Future<Result<List<Product>>> getProducts() async {
+    try {
+      final endpoint = "$_apiUrl/products";
+
+      final response = await _dio.get(endpoint);
+
+      if (response.statusCode == 200) {
+        final productsJson = (response.data["products"] as List);
+
+        final products = productsJson
+            .map((product) => Product.fromJson(product))
+            .toList();
+
+        return Result.ok(products);
+      }
+      return Result.error(Exception('Ocorreu um erro ao buscar os produtos.'));
     } on Exception catch (e) {
       return Result.error(e);
     }
