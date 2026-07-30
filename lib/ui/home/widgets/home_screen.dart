@@ -1,3 +1,6 @@
+import 'package:curso_mvvm/config/dependecies.dart';
+import 'package:curso_mvvm/ui/products/viewmodels/product_viewmodel.dart';
+import 'package:curso_mvvm/ui/products/widgets/products_widgets.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,7 +10,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home')),
-      body: Container(),
+      body: ProductsWidgets(
+        productViewmodel: ProductViewmodel(productRepository: getIt()),
+      ),
     );
   }
 }
