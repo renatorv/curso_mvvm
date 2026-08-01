@@ -1,4 +1,5 @@
 import 'package:curso_mvvm/ui/products/viewmodels/product_viewmodel.dart';
+import 'package:curso_mvvm/ui/products/widgets/products_list_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProductsWidgets extends StatefulWidget {
@@ -30,7 +31,7 @@ class _ProductsWidgetsState extends State<ProductsWidgets> {
         }
         return child!;
       },
-      child: Text('Produtos carregados com sucesso!!!'),
+      child: ProductsListWidget(productViewmodel: widget.productViewmodel),
     );
   }
 }
